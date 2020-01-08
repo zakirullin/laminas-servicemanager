@@ -42,10 +42,10 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#180](https://github.com/zendframework/zend-servicemanager/pull/180) adds
+- [zendframwork/zend-servicemanager#180](https://github.com/zendframework/zend-servicemanager/pull/180) adds
   explicit support for PSR-11 (ContainerInterface) by requiring
   container-interop at a minimum version of 1.2.0, and adding a requirement on
-  psr/container 1.0. `Zend\ServiceManager\ServiceLocatorInterface` now
+  psr/container 1.0. `Laminas\ServiceManager\ServiceLocatorInterface` now
   explicitly extends the `ContainerInterface` from both projects.
   
   Factory interfaces still typehint against the container-interop variant, as
@@ -69,7 +69,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#176](https://github.com/zendframework/zend-servicemanager/pull/176) adds
+- [zendframwork/zend-servicemanager#176](https://github.com/zendframework/zend-servicemanager/pull/176) adds
   the options `-i` or `--ignore-unresolved` to the shipped
   `generate-deps-for-config-factory` command. This flag allows it to build
   configuration for classes resolved by the `ConfigAbstractFactory` that
@@ -85,7 +85,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#174](https://github.com/zendframework/zend-servicemanager/pull/174) updates
+- [zendframwork/zend-servicemanager#174](https://github.com/zendframework/zend-servicemanager/pull/174) updates
   the `ConfigAbstractFactory` to allow the `config` service to be either an
   `array` or an `ArrayObject`; previously, only `array` was supported.
 
@@ -93,24 +93,24 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#146](https://github.com/zendframework/zend-servicemanager/pull/146) adds
-  `Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory`, which enables a
+- [zendframwork/zend-servicemanager#146](https://github.com/zendframework/zend-servicemanager/pull/146) adds
+  `Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory`, which enables a
   configuration-based approach to providing class dependencies when all
   dependencies are services known to the `ServiceManager`. Please see
   [the documentation](doc/book/config-abstract-factory.md) for details.
-- [#154](https://github.com/zendframework/zend-servicemanager/pull/154) adds
-  `Zend\ServiceManager\Tool\ConfigDumper`, which will introspect a given class
+- [zendframwork/zend-servicemanager#154](https://github.com/zendframework/zend-servicemanager/pull/154) adds
+  `Laminas\ServiceManager\Tool\ConfigDumper`, which will introspect a given class
   to determine dependencies, and then create configuration for
-  `Zend\ServiceManager\AbstractFactory\ConfigAbstractFactory`, merging it with
+  `Laminas\ServiceManager\AbstractFactory\ConfigAbstractFactory`, merging it with
   the provided configuration file. It also adds a vendor binary,
   `generate-deps-for-config-factory`, for generating these from the command
   line.
-- [#154](https://github.com/zendframework/zend-servicemanager/pull/154) adds
-  `Zend\ServiceManager\Tool\FactoryCreator`, which will introspect a given class
+- [zendframwork/zend-servicemanager#154](https://github.com/zendframework/zend-servicemanager/pull/154) adds
+  `Laminas\ServiceManager\Tool\FactoryCreator`, which will introspect a given class
   and generate a factory for it. It also adds a vendor binary,
   `generate-factory-for-class`, for generating these from the command line.
-- [#153](https://github.com/zendframework/zend-servicemanager/pull/153) adds
-  `Zend\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory`. This
+- [zendframwork/zend-servicemanager#153](https://github.com/zendframework/zend-servicemanager/pull/153) adds
+  `Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory`. This
   class may be used as either a mapped factory or an abstract factory, and will
   use reflection in order to determine which dependencies to use from the
   container when instantiating the requested service, with the following rules:
@@ -119,7 +119,7 @@ All notable changes to this project will be documented in this file, in reverse 
     `config` service, if present.
   - All other array values will be provided an empty array.
   - Class/interface typehints will be pulled from the container.
-- [#150](https://github.com/zendframework/zend-servicemanager/pull/150) adds
+- [zendframwork/zend-servicemanager#150](https://github.com/zendframework/zend-servicemanager/pull/150) adds
   a "cookbook" section to the documentation, with an initial document detailing
   the pros and cons of abstract factory usage.
 
@@ -133,7 +133,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#106](https://github.com/zendframework/zend-servicemanager/pull/106) adds
+- [zendframwork/zend-servicemanager#106](https://github.com/zendframework/zend-servicemanager/pull/106) adds
   detection of multiple attempts to register the same instance or named abstract
   factory, using a previous instance when detected. You may still use multiple
   discrete instances, however.
@@ -154,7 +154,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#167](https://github.com/zendframework/zend-servicemanager/pull/167) fixes
+- [zendframwork/zend-servicemanager#167](https://github.com/zendframework/zend-servicemanager/pull/167) fixes
   how exception codes are provided to ServiceNotCreatedException. Previously,
   the code was provided as-is. However, some PHP internal exception classes,
   notably PDOException, can sometimes return other values (such as strings),
@@ -177,7 +177,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#136](https://github.com/zendframework/zend-servicemanager/pull/136) removes
+- [zendframwork/zend-servicemanager#136](https://github.com/zendframework/zend-servicemanager/pull/136) removes
   several imports to classes in subnamespaces within the `ServiceManager`
   classfile, removing potential name resolution conflicts that occurred in edge
   cases when testing.
@@ -186,16 +186,16 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#103](https://github.com/zendframework/zend-servicemanager/pull/103) Allowing
+- [zendframwork/zend-servicemanager#103](https://github.com/zendframework/zend-servicemanager/pull/103) Allowing
   installation of `ocramius/proxy-manager` `^2.0` together with
   `zendframework/zend-servicemanager`.
-- [#103](https://github.com/zendframework/zend-servicemanager/pull/103) Disallowing
+- [zendframwork/zend-servicemanager#103](https://github.com/zendframework/zend-servicemanager/pull/103) Disallowing
   test failures when running tests against PHP `7.0.*`.
-- [#113](https://github.com/zendframework/zend-servicemanager/pull/113) Improved performance
+- [zendframwork/zend-servicemanager#113](https://github.com/zendframework/zend-servicemanager/pull/113) Improved performance
   when dealing with registering aliases and factories via `ServiceManager#setFactory()` and
   `ServiceManager#setAlias()`
-- [#120](https://github.com/zendframework/zend-servicemanager/pull/120) The
-  `zendframework/zend-servicemanager` component now provides a
+- [zendframwork/zend-servicemanager#120](https://github.com/zendframework/zend-servicemanager/pull/120) The
+  `laminas/laminas-servicemanager` component now provides a
   `container-interop/container-interop-implementation` implementation
 
 ### Deprecated
@@ -208,9 +208,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#97](https://github.com/zendframework/zend-servicemanager/pull/97) Typo corrections
+- [zendframwork/zend-servicemanager#97](https://github.com/zendframework/zend-servicemanager/pull/97) Typo corrections
   in the delegator factories documentation.
-- [#98](https://github.com/zendframework/zend-servicemanager/pull/98) Using coveralls ^1.0
+- [zendframwork/zend-servicemanager#98](https://github.com/zendframework/zend-servicemanager/pull/98) Using coveralls ^1.0
   for tracking test code coverage changes.
 
 ## 3.0.4 - TBD
@@ -235,15 +235,15 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- [#89](https://github.com/zendframework/zend-servicemanager/pull/89) adds
+- [zendframwork/zend-servicemanager#89](https://github.com/zendframework/zend-servicemanager/pull/89) adds
   cyclic alias detection to the `ServiceManager`; it now raises a
-  `Zend\ServiceManager\Exception\CyclicAliasException` when one is detected,
+  `Laminas\ServiceManager\Exception\CyclicAliasException` when one is detected,
   detailing the cycle detected.
-- [#95](https://github.com/zendframework/zend-servicemanager/pull/95) adds
+- [zendframwork/zend-servicemanager#95](https://github.com/zendframework/zend-servicemanager/pull/95) adds
   GitHub Pages publication automation, and moves the documentation to
-  https://zendframework.github.io/zend-servicemanager/
-- [#93](https://github.com/zendframework/zend-servicemanager/pull/93) adds
-  `Zend\ServiceManager\Test\CommonPluginManagerTrait`, which can be used to
+  https://docs.laminas.dev/laminas-servicemanager/
+- [zendframwork/zend-servicemanager#93](https://github.com/zendframework/zend-servicemanager/pull/93) adds
+  `Laminas\ServiceManager\Test\CommonPluginManagerTrait`, which can be used to
   validate that a plugin manager instance is ready for version 3.
 
 ### Deprecated
@@ -256,19 +256,19 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#90](https://github.com/zendframework/zend-servicemanager/pull/90) fixes
+- [zendframwork/zend-servicemanager#90](https://github.com/zendframework/zend-servicemanager/pull/90) fixes
   several examples in the configuration chapter of the documentation, ensuring
   that the signatures are correct.
-- [#92](https://github.com/zendframework/zend-servicemanager/pull/92) ensures
+- [zendframwork/zend-servicemanager#92](https://github.com/zendframework/zend-servicemanager/pull/92) ensures
   that alias resolution is skipped during configuration if no aliases are
-  present, and forward-ports the test from [#81](https://github.com/zendframework/zend-servicemanager/pull/81)
+  present, and forward-ports the test from [zendframwork/zend-servicemanager#81](https://github.com/zendframework/zend-servicemanager/pull/81)
   to validate v2/v3 compatibility for plugin managers.
 
 ## 3.0.2 - 2016-01-24
 
 ### Added
 
-- [#64](https://github.com/zendframework/zend-servicemanager/pull/64) performance optimizations
+- [zendframwork/zend-servicemanager#64](https://github.com/zendframework/zend-servicemanager/pull/64) performance optimizations
   when dealing with alias resolution during service manager instantiation
 
 ### Deprecated
@@ -281,14 +281,14 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- [#62](https://github.com/zendframework/zend-servicemanager/pull/62)
-  [#64](https://github.com/zendframework/zend-servicemanager/pull/64) corrected benchmark assets signature
-- [#72](https://github.com/zendframework/zend-servicemanager/pull/72) corrected link to the Proxy Pattern Wikipedia
+- [zendframwork/zend-servicemanager#62](https://github.com/zendframework/zend-servicemanager/pull/62)
+  [zendframwork/zend-servicemanager#64](https://github.com/zendframework/zend-servicemanager/pull/64) corrected benchmark assets signature
+- [zendframwork/zend-servicemanager#72](https://github.com/zendframework/zend-servicemanager/pull/72) corrected link to the Proxy Pattern Wikipedia
   page in the documentation
-- [#78](https://github.com/zendframework/zend-servicemanager/issues/78)
-  [#79](https://github.com/zendframework/zend-servicemanager/pull/79) creation context was not being correctly passed
+- [zendframwork/zend-servicemanager#78](https://github.com/zendframework/zend-servicemanager/issues/78)
+  [zendframwork/zend-servicemanager#79](https://github.com/zendframework/zend-servicemanager/pull/79) creation context was not being correctly passed
   to abstract factories when using plugin managers
-- [#82](https://github.com/zendframework/zend-servicemanager/pull/82) corrected migration guide in the DocBlock of
+- [zendframwork/zend-servicemanager#82](https://github.com/zendframework/zend-servicemanager/pull/82) corrected migration guide in the DocBlock of
   the `InitializerInterface`
 
 ## 3.0.1 - 2016-01-19
@@ -303,9 +303,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- [#68](https://github.com/zendframework/zend-servicemanager/pull/68) removes
-  the dependency on zend-stdlib by inlining the `ArrayUtils::merge()` routine
-  as a private method of `Zend\ServiceManager\Config`.
+- [zendframwork/zend-servicemanager#68](https://github.com/zendframework/zend-servicemanager/pull/68) removes
+  the dependency on laminas-stdlib by inlining the `ArrayUtils::merge()` routine
+  as a private method of `Laminas\ServiceManager\Config`.
 
 ### Fixed
 
@@ -313,21 +313,21 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ## 3.0.0 - 2016-01-11
 
-First stable release of version 3 of zend-servicemanager.
+First stable release of version 3 of laminas-servicemanager.
 
-Documentation is now available at http://zend-servicemanager.rtfd.org
+Documentation is now available at http://laminas-servicemanager.rtfd.org
 
 ### Added
 
 - You can now map multiple key names to the same factory. It was previously
-  possible in ZF2 but it was not enforced by the `FactoryInterface` interface.
+  possible in Laminas but it was not enforced by the `FactoryInterface` interface.
   Now the interface receives the `$requestedName` as the *second* parameter
   (previously, it was the third).
 
   Example:
   
   ```php
-  $sm = new \Zend\ServiceManager\ServiceManager([
+  $sm = new \Laminas\ServiceManager\ServiceManager([
       'factories'  => [
           MyClassA::class => MyFactory::class,
           MyClassB::class => MyFactory::class,
@@ -342,7 +342,7 @@ Documentation is now available at http://zend-servicemanager.rtfd.org
   longer need to implement the complete `validate` method.
 
   In versions 2.x, if your plugin manager only allows creating instances that
-  implement `Zend\Validator\ValidatorInterface`, you needed to write the
+  implement `Laminas\Validator\ValidatorInterface`, you needed to write the
   following code:
 
   ```php
@@ -350,14 +350,14 @@ Documentation is now available at http://zend-servicemanager.rtfd.org
   {
     public function validate($instance)
     {
-        if ($instance instanceof \Zend\Validator\ValidatorInterface) {
+        if ($instance instanceof \Laminas\Validator\ValidatorInterface) {
             return;
         }
     
         throw new InvalidServiceException(sprintf(
             'Plugin manager "%s" expected an instance of type "%s", but "%s" was received',
              __CLASS__,
-             \Zend\Validator\ValidatorInterface::class,
+             \Laminas\Validator\ValidatorInterface::class,
              is_object($instance) ? get_class($instance) : gettype($instance)
         ));
     }
@@ -367,8 +367,8 @@ Documentation is now available at http://zend-servicemanager.rtfd.org
   In version 3, this becomes:
   
   ```php
-  use Zend\ServiceManager\AbstractPluginManager;
-  use Zend\Validator\ValidatorInterface;
+  use Laminas\ServiceManager\AbstractPluginManager;
+  use Laminas\Validator\ValidatorInterface;
   
   class MyPluginManager extends AbstractPluginManager
   {
@@ -400,7 +400,7 @@ Documentation is now available at http://zend-servicemanager.rtfd.org
 - Peering has been removed. It was a complex and rarely used feature that was
   misunderstood most of the time.
 
-- Integration with `Zend\Di` has been removed. It may be re-integrated later.
+- Integration with `Laminas\Di` has been removed. It may be re-integrated later.
 
 - `MutableCreationOptionsInterface` has been removed, as options can now be
   passed directly through factories.
@@ -415,23 +415,23 @@ v3 of the ServiceManager component is a completely rewritten, more efficient
 implementation of the service locator pattern. It includes a number of breaking
 changes, outlined in this section.
 
-- You no longer need a `Zend\ServiceManager\Config` object to configure the
+- You no longer need a `Laminas\ServiceManager\Config` object to configure the
   service manager; you can pass the configuration array directly instead.
 
   In version 2.x:
   
   ```php
-  $config = new \Zend\ServiceManager\Config([
+  $config = new \Laminas\ServiceManager\Config([
       'factories'  => [...]
   ]);
   
-  $sm = new \Zend\ServiceManager\ServiceManager($config);
+  $sm = new \Laminas\ServiceManager\ServiceManager($config);
   ```
   
-  In ZF 3.x:
+  In Laminas 3.x:
   
   ```php
-  $sm = new \Zend\ServiceManager\ServiceManager([
+  $sm = new \Laminas\ServiceManager\ServiceManager([
       'factories'  => [...]
   ]);
   ```
@@ -555,7 +555,7 @@ changes, outlined in this section.
 
 ### Added
 
-- [#60](https://github.com/zendframework/zend-servicemanager/pull/60) adds
+- [zendframwork/zend-servicemanager#60](https://github.com/zendframework/zend-servicemanager/pull/60) adds
   forward compatibility features for `AbstractPluingManager` and introduces
   `InvokableFactory` to help forward migration to version 3.
 
@@ -569,11 +569,11 @@ changes, outlined in this section.
 
 ### Fixed
 
-- [#46](https://github.com/zendframework/zend-servicemanager/pull/46) updates
+- [zendframwork/zend-servicemanager#46](https://github.com/zendframework/zend-servicemanager/pull/46) updates
   the exception hierarchy to inherit from the container-interop exceptions.
   This ensures that all exceptions thrown by the component follow the
   recommendations of that project.
-- [#52](https://github.com/zendframework/zend-servicemanager/pull/52) fixes
+- [zendframwork/zend-servicemanager#52](https://github.com/zendframework/zend-servicemanager/pull/52) fixes
   the exception message thrown by `ServiceManager::setFactory()` to remove
   references to abstract factories.
 
@@ -581,7 +581,7 @@ changes, outlined in this section.
 
 ### Added
 
-- [#4](https://github.com/zendframework/zend-servicemanager/pull/4) updates the
+- [zendframwork/zend-servicemanager#4](https://github.com/zendframework/zend-servicemanager/pull/4) updates the
     `ServiceManager` to [implement the container-interop interface](https://github.com/container-interop/container-interop),
     allowing interoperability with applications that consume that interface.
 
@@ -595,7 +595,7 @@ changes, outlined in this section.
 
 ### Fixed
 
-- [#3](https://github.com/zendframework/zend-servicemanager/pull/3) properly updates the
+- [zendframwork/zend-servicemanager#3](https://github.com/zendframework/zend-servicemanager/pull/3) properly updates the
   codebase to PHP 5.5, by taking advantage of the default closure binding
   (`$this` in a closure is the invoking object when created within a method). It
   also removes several `@requires PHP 5.4.0` annotations.

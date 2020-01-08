@@ -1,30 +1,31 @@
 <?php
+
 /**
- * @link      http://github.com/zendframework/zend-servicemanager for the canonical source repository
- * @copyright Copyright (c) 2015-2016 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * @see       https://github.com/laminasframwork/laminas-servicemanager for the canonical source repository
+ * @copyright https://github.com/laminasframwork/laminas-servicemanager/blob/master/COPYRIGHT.md
+ * @license   https://github.com/laminasframwork/laminas-servicemanager/blob/master/LICENSE.md New BSD License
  */
 
-namespace ZendTest\ServiceManager;
+namespace LaminasTest\ServiceManager;
 
 use DateTime;
 use Interop\Container\Exception\ContainerException;
+use Laminas\ServiceManager\Exception\ContainerModificationsNotAllowedException;
+use Laminas\ServiceManager\Exception\CyclicAliasException;
+use Laminas\ServiceManager\Exception\InvalidArgumentException;
+use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\Initializer\InitializerInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use LaminasTest\ServiceManager\TestAsset\CallTimesAbstractFactory;
+use LaminasTest\ServiceManager\TestAsset\FailingAbstractFactory;
+use LaminasTest\ServiceManager\TestAsset\FailingExceptionWithStringAsCodeFactory;
+use LaminasTest\ServiceManager\TestAsset\FailingFactory;
+use LaminasTest\ServiceManager\TestAsset\InvokableObject;
+use LaminasTest\ServiceManager\TestAsset\SimpleAbstractFactory;
 use ReflectionProperty;
 use stdClass;
-use Zend\ServiceManager\Exception\ContainerModificationsNotAllowedException;
-use Zend\ServiceManager\Exception\CyclicAliasException;
-use Zend\ServiceManager\Exception\InvalidArgumentException;
-use Zend\ServiceManager\Exception\ServiceNotCreatedException;
-use Zend\ServiceManager\Factory\FactoryInterface;
-use Zend\ServiceManager\Factory\InvokableFactory;
-use Zend\ServiceManager\Initializer\InitializerInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use ZendTest\ServiceManager\TestAsset\CallTimesAbstractFactory;
-use ZendTest\ServiceManager\TestAsset\FailingAbstractFactory;
-use ZendTest\ServiceManager\TestAsset\FailingExceptionWithStringAsCodeFactory;
-use ZendTest\ServiceManager\TestAsset\FailingFactory;
-use ZendTest\ServiceManager\TestAsset\InvokableObject;
-use ZendTest\ServiceManager\TestAsset\SimpleAbstractFactory;
 
 use function call_user_func_array;
 use function restore_error_handler;
@@ -393,7 +394,7 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @covers \Zend\ServiceManager\ServiceManager::configure
+     * @covers \Laminas\ServiceManager\ServiceManager::configure
      */
     public function testCanConfigureAllServiceTypes()
     {
@@ -472,7 +473,7 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @covers \Zend\ServiceManager\ServiceManager::configure
+     * @covers \Laminas\ServiceManager\ServiceManager::configure
      */
     public function testCanSpecifyAbstractFactoryUsingStringViaConfiguration()
     {
@@ -510,7 +511,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @dataProvider invalidAbstractFactories
-     * @covers \Zend\ServiceManager\ServiceManager::configure
+     * @covers \Laminas\ServiceManager\ServiceManager::configure
      */
     public function testPassingInvalidAbstractFactoryTypeViaConfigurationRaisesException(
         $factory,
@@ -551,7 +552,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @dataProvider invalidInitializers
-     * @covers \Zend\ServiceManager\ServiceManager::configure
+     * @covers \Laminas\ServiceManager\ServiceManager::configure
      */
     public function testPassingInvalidInitializerTypeViaConfigurationRaisesException(
         $initializer,
@@ -567,7 +568,7 @@ trait CommonServiceLocatorBehaviorsTrait
     }
 
     /**
-     * @covers \Zend\ServiceManager\ServiceManager::getFactory
+     * @covers \Laminas\ServiceManager\ServiceManager::getFactory
      */
     public function testGetRaisesExceptionWhenNoFactoryIsResolved()
     {
@@ -587,7 +588,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @dataProvider invalidDelegators
-     * @covers \Zend\ServiceManager\ServiceManager::createDelegatorFromName
+     * @covers \Laminas\ServiceManager\ServiceManager::createDelegatorFromName
      */
     public function testInvalidDelegatorShouldRaiseExceptionDuringCreation(
         $delegator,
@@ -611,7 +612,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::setAlias
+     * @covers \Laminas\ServiceManager\ServiceManager::setAlias
      */
     public function testCanInjectAliases()
     {
@@ -634,7 +635,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::setInvokableClass
+     * @covers \Laminas\ServiceManager\ServiceManager::setInvokableClass
      */
     public function testCanInjectInvokables()
     {
@@ -648,7 +649,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::setFactory
+     * @covers \Laminas\ServiceManager\ServiceManager::setFactory
      */
     public function testCanInjectFactories()
     {
@@ -665,7 +666,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::mapLazyService
+     * @covers \Laminas\ServiceManager\ServiceManager::mapLazyService
      */
     public function testCanMapLazyServices()
     {
@@ -681,7 +682,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::addAbstractFactory
+     * @covers \Laminas\ServiceManager\ServiceManager::addAbstractFactory
      */
     public function testCanInjectAbstractFactories()
     {
@@ -695,7 +696,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::addDelegator
+     * @covers \Laminas\ServiceManager\ServiceManager::addDelegator
      */
     public function testCanInjectDelegators()
     {
@@ -719,7 +720,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::addInitializer
+     * @covers \Laminas\ServiceManager\ServiceManager::addInitializer
      */
     public function testCanInjectInitializers()
     {
@@ -745,7 +746,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::setService
+     * @covers \Laminas\ServiceManager\ServiceManager::setService
      */
     public function testCanInjectServices()
     {
@@ -756,7 +757,7 @@ trait CommonServiceLocatorBehaviorsTrait
 
     /**
      * @group mutation
-     * @covers \Zend\ServiceManager\ServiceManager::setShared
+     * @covers \Laminas\ServiceManager\ServiceManager::setShared
      */
     public function testCanInjectSharingRules()
     {

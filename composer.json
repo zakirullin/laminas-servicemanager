@@ -1,52 +1,63 @@
 {
-    "name": "zendframework/zend-servicemanager",
+    "name": "laminas/laminas-servicemanager",
     "description": " ",
     "license": "BSD-3-Clause",
     "keywords": [
-        "zf",
+        "laminas",
+        "laminasframwork",
         "servicemanager",
         "service-manager"
     ],
-    "homepage": "https://github.com/zendframework/zend-servicemanager",
-    "autoload": {
-        "psr-4": {
-            "Zend\\ServiceManager\\": "src/"
-        }
+    "homepage": "https://laminasframwork.dev",
+    "support": {
+        "docs": "https://docs.laminasframwork.dev/laminas-servicemanager/",
+        "issues": "https://github.com/laminasframwork/laminas-servicemanager/issues",
+        "source": "https://github.com/laminasframwork/laminas-servicemanager",
+        "rss": "https://github.com/laminasframwork/laminas-servicemanager/releases.atom",
+        "chat": "https://laminas.dev/chat",
+        "forum": "https://discourse.laminas.dev"
     },
-    "require": {
-        "php": "^7.1",
-        "container-interop/container-interop": "^1.2",
-        "psr/container": "^1.0",
-        "zendframework/zend-stdlib": "^3.1"
+    "config": {
+        "sort-packages": true
     },
-    "require-dev": {
-        "mikey179/vfsStream": "^1.6.4",
-        "ocramius/proxy-manager": "^2.1.1",
-        "phpbench/phpbench": "^0.13.0",
-        "phpunit/phpunit": "^6.2.3",
-        "zendframework/zend-coding-standard": "~1.0.0"
-    },
-    "suggest": {
-        "ocramius/proxy-manager": "ProxyManager ^2.1.1 to handle lazy initialization of services",
-        "zendframework/zend-stdlib": "zend-stdlib ^2.7.7 | ^3.1 if you wish to use the MergeReplaceKey or MergeRemoveKey features in Config instances"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "3.3-dev",
             "dev-develop": "3.4-dev"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "ZendTest\\ServiceManager\\": "test/",
-            "ZendBench\\ServiceManager\\": "benchmarks/"
-        }
+    "require": {
+        "php": "^7.1",
+        "container-interop/container-interop": "^1.2",
+        "laminas/laminas-stdlib": "^3.1",
+        "laminas/laminas-zendframework-bridge": "^1.0",
+        "psr/container": "^1.0"
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "~1.0.0",
+        "mikey179/vfsstream": "^1.6.4",
+        "ocramius/proxy-manager": "^2.1.1",
+        "phpbench/phpbench": "^0.13.0",
+        "phpunit/phpunit": "^6.2.3"
     },
     "provide": {
         "container-interop/container-interop-implementation": "^1.2",
         "psr/container-implementation": "^1.0"
+    },
+    "suggest": {
+        "laminas/laminas-stdlib": "laminas-stdlib ^2.7.7 | ^3.1 if you wish to use the MergeReplaceKey or MergeRemoveKey features in Config instances",
+        "ocramius/proxy-manager": "ProxyManager ^2.1.1 to handle lazy initialization of services"
+    },
+    "autoload": {
+        "psr-4": {
+            "Laminas\\ServiceManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaminasTest\\ServiceManager\\": "test/",
+            "LaminasBench\\ServiceManager\\": "benchmarks/"
+        }
     },
     "bin": [
         "bin/generate-deps-for-config-factory",
@@ -62,5 +73,8 @@
         "test": "phpunit --colors=always",
         "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
         "upload-coverage": "coveralls -v"
+    },
+    "replace": {
+        "zendframework/zend-servicemanager": "self.version"
     }
 }

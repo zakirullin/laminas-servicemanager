@@ -2,27 +2,13 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 3.4.0 - TBD
+## 4.0.0 - TBD
 
 ### Added
 
 - Nothing.
 
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
-
-- Nothing.
-
-## 3.3.1 - TBD
-
-### Added
+### Changed
 
 - Nothing.
 
@@ -47,7 +33,7 @@ All notable changes to this project will be documented in this file, in reverse 
   container-interop at a minimum version of 1.2.0, and adding a requirement on
   psr/container 1.0. `Laminas\ServiceManager\ServiceLocatorInterface` now
   explicitly extends the `ContainerInterface` from both projects.
-  
+
   Factory interfaces still typehint against the container-interop variant, as
   changing the typehint would break backwards compatibility. Users can
   duck-type most of these interfaces, however, by creating callables or
@@ -325,7 +311,7 @@ Documentation is now available at http://laminas-servicemanager.rtfd.org
   (previously, it was the third).
 
   Example:
-  
+
   ```php
   $sm = new \Laminas\ServiceManager\ServiceManager([
       'factories'  => [
@@ -334,7 +320,7 @@ Documentation is now available at http://laminas-servicemanager.rtfd.org
           'MyClassC'      => 'MyFactory' // This is equivalent as using ::class
       ],
   ]);
-  
+
   $sm->get(MyClassA::class); // MyFactory will receive MyClassA::class as second parameter
   ```
 
@@ -353,7 +339,7 @@ Documentation is now available at http://laminas-servicemanager.rtfd.org
         if ($instance instanceof \Laminas\Validator\ValidatorInterface) {
             return;
         }
-    
+
         throw new InvalidServiceException(sprintf(
             'Plugin manager "%s" expected an instance of type "%s", but "%s" was received',
              __CLASS__,
@@ -363,19 +349,19 @@ Documentation is now available at http://laminas-servicemanager.rtfd.org
     }
   }
   ```
-  
+
   In version 3, this becomes:
-  
+
   ```php
   use Laminas\ServiceManager\AbstractPluginManager;
   use Laminas\Validator\ValidatorInterface;
-  
+
   class MyPluginManager extends AbstractPluginManager
   {
       protected $instanceOf = ValidatorInterface::class;
   }
   ```
-  
+
   Of course, you can still override the `validate` method if your logic is more
   complex.
 
@@ -419,17 +405,17 @@ changes, outlined in this section.
   service manager; you can pass the configuration array directly instead.
 
   In version 2.x:
-  
+
   ```php
   $config = new \Laminas\ServiceManager\Config([
       'factories'  => [...]
   ]);
-  
+
   $sm = new \Laminas\ServiceManager\ServiceManager($config);
   ```
-  
+
   In Laminas 3.x:
-  
+
   ```php
   $sm = new \Laminas\ServiceManager\ServiceManager([
       'factories'  => [...]
@@ -458,7 +444,7 @@ changes, outlined in this section.
   argument if present.
 
   For instance, here is a simple version 2.x factory:
-  
+
   ```php
   class MyFactory implements FactoryInterface
   {
@@ -468,9 +454,9 @@ changes, outlined in this section.
       }
   }
   ```
-  
+
   The equivalent version 3 factory:
-  
+
   ```php
   class MyFactory implements FactoryInterface
   {
@@ -500,23 +486,23 @@ changes, outlined in this section.
   through the interface.
 
   In version 2.x, if a factory was set to a service name defined in a plugin manager:
-  
+
   ```php
   class MyFactory implements FactoryInterface
   {
       function createService(ServiceLocatorInterface $sl)
       {
           // $sl is actually a plugin manager
-        
+
           $parentLocator = $sl->getServiceLocator();
-        
+
           // ...
       }
   }
   ```
-  
+
   In version 3:
-  
+
   ```php
   class MyFactory implements FactoryInterface
   {
